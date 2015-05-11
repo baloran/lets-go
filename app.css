@@ -1,0 +1,20 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#game{
+  width:900px;
+  margin:0 auto;
+}
+
+.case{
+  display:inline-block;
+  width: calc(100%/19);
+  background-color: #fff;
+  height:19px;
+  border:1px solid #cd5656;
+  cursor:pointer;
+}

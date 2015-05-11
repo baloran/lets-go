@@ -9,6 +9,9 @@
       - Arnaud Allouis
  */
 
+/**
+ * [Go description]
+ */
 var Go = function () {
 
   this.gameElement = document.querySelector("#game");
@@ -16,6 +19,23 @@ var Go = function () {
   this.gameOptions = {
     finish: false
   }
+
+  this.players = [
+    {
+      id: 0,
+      name: 'John',
+      score: 0,
+      time: 0
+    },
+    {
+      id: 1,
+      name: 'Jean',
+      score: 0,
+      time: 0
+    }
+  ];
+
+  this.currentPlayer = 0;
 };
 
 /**
@@ -63,21 +83,16 @@ Go.prototype.events = function () {
 
   var that = this;
 
-  console.log(that.elemCases);
-
   for (var i = 0; i < that.elemCases.length; i++) {
 
     var elem = that.elemCases[i];
 
     elem.addEventListener('click', function (){
 
-      console.log(this);
+      that.placement(this);
 
     });
   }
-  // that.elemCases.addEventListener('onclick', function (){
-  //   console.log("salut");
-  // });
 };
 
 
@@ -100,5 +115,6 @@ Go.prototype.init = function () {
   });
 
   this.generateGameBoard();
+  this.initUI();
 
 };

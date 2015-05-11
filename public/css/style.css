@@ -1,3 +1,10 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -5,9 +12,32 @@ html {
   box-sizing: inherit;
 }
 
-#game{
-  width:900px;
-  margin:0 auto;
+#leftside {
+	width: 250px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+}
+
+.logo {
+	width: 160px;
+	margin: 40px;
+}
+
+#rightside {
+	width: auto;
+	height: 100%;
+	margin-left: 250px;
+	background-color: #21282e;
+}
+
+.game_area {
+	width: 500px;
+	height: 500px;
+	margin: auto;
+	background-color: #fff;
 }
 
 .case{

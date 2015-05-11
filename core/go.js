@@ -16,76 +16,89 @@ var Go = function () {
   this.gameOptions = {
     finish: false
   }
+};
 
-  /**
-   * init
-   * Instancie le jeu
-   */
-  this.init = function () {
+/**
+ * generateGameBoard
+ * Permet de genererer le tableau de jeu
+ */
+Go.prototype.generateGameBoard = function () {
 
-    var that = this;
+  var that = this;
+  var j = 1;
+  var l = 1;
 
-    watch(that.gameOptions, "finish", function(){
+  for (var i = 1; i < 20; i++) {
 
-      if (that.gameOptions.finish) {
-        that.elemCases = document.querySelectorAll('.case');
-      }
+    var elem = document.createElement("div");
+    elem.dataset.x = i;
+    elem.dataset.y = j;
 
-      that.events();
+    that.gameElement.appendChild(elem);
 
-    });
+    that.addClass(elem, "case");
 
-    this.generateGameBoard();
-
-  };
-
-  /**
-   * generateGameBoard
-   * Permet de genererer le tableau de jeu
-   */
-  this.generateGameBoard = function () {
-
-    var that = this;
-    var j = 1;
-    var l = 1;
-
-    for (var i = 1; i < 20; i++) {
-
-      var elem = document.createElement("div");
-      elem.dataset.x = i;
-      elem.dataset.y = j;
-
-      that.gameElement.appendChild(elem);
-
-      that.addClass(elem, "case");
-
-      if (l == 19) {
-        that.gameOptions.finish = true;
-        break;
-      }
-
-      if (j == 19) {
-        l++;
-      }
-
-      if (i == 19) {
-        i = 0;
-        j++;
-      }
-
+    if (l == 19) {
+      that.gameOptions.finish = true;
+      break;
     }
-  };
 
-  this.events = function () {
+    if (j == 19) {
+      l++;
+    }
 
-    var that = this;
+    if (i == 19) {
+      i = 0;
+      j++;
+    }
 
-    that.elemCases.forEach(function (item) {
-      console.log(item);
+  }
+};
+
+/**
+ * [events description]
+ * @return {[type]} [description]
+ */
+Go.prototype.events = function () {
+
+  var that = this;
+
+  console.log(that.elemCases);
+
+  for (var i = 0; i < that.elemCases.length; i++) {
+
+    var elem = that.elemCases[i];
+
+    elem.addEventListener('click', function (){
+
+      console.log(this);
+
     });
-    // that.elemCases.addEventListener('onclick', function (){
-    //   console.log("salut");
-    // });
-  };
+  }
+  // that.elemCases.addEventListener('onclick', function (){
+  //   console.log("salut");
+  // });
+};
+
+
+/**
+ * init
+ * Instancie le jeu
+ */
+Go.prototype.init = function () {
+
+  var that = this;
+
+  watch(that.gameOptions, "finish", function(){
+
+    if (that.gameOptions.finish) {
+      that.elemCases = document.querySelectorAll('.case');
+    }
+
+    that.events();
+
+  });
+
+  this.generateGameBoard();
 
 };

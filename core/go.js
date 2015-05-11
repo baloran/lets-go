@@ -17,7 +17,8 @@ var Go = function () {
   this.gameElement = document.querySelector("#game");
 
   this.gameOptions = {
-    finish: false
+    finish: false,
+    pause: false
   }
 
   this.players = [
@@ -36,6 +37,29 @@ var Go = function () {
   ];
 
   this.currentPlayer = 0;
+};
+
+/**
+ * init
+ * Instancie le jeu
+ */
+Go.prototype.init = function () {
+
+  var that = this;
+
+  watch(that.gameOptions, "finish", function(){
+
+    if (that.gameOptions.finish) {
+      that.elemCases = document.querySelectorAll('.case');
+    }
+
+    that.events();
+
+  });
+
+  this.generateGameBoard();
+  this.initUI();
+
 };
 
 /**
@@ -83,6 +107,7 @@ Go.prototype.events = function () {
 
   var that = this;
 
+  // Click on cases
   for (var i = 0; i < that.elemCases.length; i++) {
 
     var elem = that.elemCases[i];
@@ -93,28 +118,13 @@ Go.prototype.events = function () {
 
     });
   }
-};
 
+  // Click on button Pause
+  $('button.togglePause').click(function () {
 
-/**
- * init
- * Instancie le jeu
- */
-Go.prototype.init = function () {
-
-  var that = this;
-
-  watch(that.gameOptions, "finish", function(){
-
-    if (that.gameOptions.finish) {
-      that.elemCases = document.querySelectorAll('.case');
-    }
-
-    that.events();
+    console.log("test");
+    that.pauseCountDown();
 
   });
-
-  this.generateGameBoard();
-  this.initUI();
 
 };

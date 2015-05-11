@@ -8,6 +8,8 @@
 Go.prototype.initUI = function () {
 
   this.displayTimer();
+  this.displayScore();
+  this.pause();
 };
 
 /**
@@ -28,13 +30,53 @@ Go.prototype.displayTimer = function () {
       var p = that.players[i];
 
       if (p.id == 0) {
+
         $('#timePlayer1').html(p.time);
       } else {
+
         $('#timePlayer2').html(p.time);
       }
 
     }
-    
+
   });
 
+};
+
+/**
+ * [displayScore description]
+ */
+Go.prototype.displayScore = function () {
+
+  this.players.forEach(function (item) {
+
+    watch(item, 'score', function () {
+
+      if (item.id == 0) {
+
+        $('#scorePlayer1').html(item.score);
+      } else {
+        
+        $('#scorePlayer2').html(item.score);
+      }
+    });
+
+  });
+};
+
+Go.prototype.pause = function () {
+
+  var that = this;
+
+  watch(that.gameOptions, 'pause', function () {
+
+    if (that.gameOptions.pause) {
+
+      $('#game').fadeOut();
+
+    } else {
+
+      $('#game').fadeIn();
+    }
+  });
 };

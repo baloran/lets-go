@@ -9,7 +9,7 @@ define([
     'ui'
   ], function ($, _) {
 
-  $(function() {
+  $(function(_) {
 
     var app = new Go();
     app.init();

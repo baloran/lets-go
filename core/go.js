@@ -18,8 +18,24 @@ var Go = function () {
 
   this.gameOptions = {
     finish: false,
-    pause: false
+    pause: false,
+    size: '19'
   }
+
+  this.sizeGame = [
+    {
+      x: 19,
+      y: 19,
+      name: '19X19',
+      slug: '19'
+    },
+    {
+      x: 12,
+      y: 12,
+      name: '12X12',
+      slug: '12'
+    }
+  ];
 
   this.players = [
     {
@@ -35,6 +51,23 @@ var Go = function () {
       time: 0
     }
   ];
+
+  this.game = [];
+  this.chaine = [];
+
+  this.stone = function () {
+    this.next =  null;
+    this.prev =  null;
+    this.x =  0;
+    this.y =  0;
+    this.east =  0;
+    this.north =  0;
+    this.west =  0;
+    this.south =  0;
+    this.liberty =  0;
+    this.elem = null;
+    this.user = null;
+  };
 
   this.currentPlayer = 0;
 };
@@ -62,6 +95,17 @@ Go.prototype.init = function () {
 
 };
 
+Go.prototype.getCurrentSize = function () {
+
+  var that = this;
+
+  var size = _.findWhere(that.sizeGame, {slug: that.gameOptions.size});
+
+  console.log(size);
+
+  return size;
+}
+
 /**
  * generateGameBoard
  * Permet de genererer le tableau de jeu
@@ -71,31 +115,50 @@ Go.prototype.generateGameBoard = function () {
   var that = this;
   var j = 1;
   var l = 1;
+  var size = that.getCurrentSize();
 
-  for (var i = 1; i < 20; i++) {
+  for (var i = 1; i < (size.x + 1); i++) {
 
     var elem = document.createElement("div");
     elem.dataset.x = i;
     elem.dataset.y = j;
+    var s = new that.stone();
+    s.x = i;
+    s.y = j;
+    s.elem = elem;
+
+    that.game.push(s);
 
     that.gameElement.appendChild(elem);
 
     that.addClass(elem, "case");
 
-    if (l == 19) {
+    if (l == size.x) {
       that.gameOptions.finish = true;
       break;
     }
 
-    if (j == 19) {
+    if (j == size.y) {
       l++;
     }
 
-    if (i == 19) {
+    if (i == size.x) {
       i = 0;
       j++;
     }
 
+  }
+};
+
+/**
+ * [generateLinkObject description]
+ * @return {[type]} [description]
+ */
+Go.prototype.generateLinkObject = function () {
+
+  for (var i = 0; i < that.game.length; i++) {
+
+    
   }
 };
 

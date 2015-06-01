@@ -40,6 +40,23 @@ Go.prototype.getCurrentPlayer = function () {
 };
 
 /**
+ * [getSecondPlayer description]
+ * @return {[type]} [description]
+ */
+Go.prototype.getSecondPlayer = function () {
+
+  for (var i = 0; i < this.players.length; i++) {
+
+    var player = this.players[i];
+
+    if (this.players[i].id != this.currentPlayer) {
+      return this.players[i];
+    }
+  }
+
+};
+
+/**
  * [startCountDown description]
  */
 Go.prototype.startCountDown = function () {

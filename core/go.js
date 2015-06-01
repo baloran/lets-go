@@ -34,6 +34,12 @@ var Go = function () {
       y: 12,
       name: '12X12',
       slug: '12'
+    },
+    {
+      x: 9,
+      y: 9,
+      name: '9X9',
+      slug: '9'
     }
   ];
 
@@ -56,17 +62,18 @@ var Go = function () {
   this.chaine = [];
 
   this.stone = function () {
-    this.next =  null;
-    this.prev =  null;
     this.x =  0;
     this.y =  0;
-    this.east =  0;
-    this.north =  0;
-    this.west =  0;
-    this.south =  0;
+    this.next = null;
+    this.prev = null;
+    this.east =  null;
+    this.north =  null;
+    this.west =  null;
+    this.south =  null;
     this.liberty =  0;
     this.elem = null;
     this.user = null;
+    this.timePose = 0;
   };
 
   this.currentPlayer = 0;
@@ -84,6 +91,7 @@ Go.prototype.init = function () {
 
     if (that.gameOptions.finish) {
       that.elemCases = document.querySelectorAll('.case');
+      that.generateLinkObject();
     }
 
     that.events();
@@ -122,6 +130,7 @@ Go.prototype.generateGameBoard = function () {
     var elem = document.createElement("div");
     elem.dataset.x = i;
     elem.dataset.y = j;
+
     var s = new that.stone();
     s.x = i;
     s.y = j;
@@ -156,9 +165,51 @@ Go.prototype.generateGameBoard = function () {
  */
 Go.prototype.generateLinkObject = function () {
 
+  var that = this;
+  var size = that.getCurrentSize();
+
   for (var i = 0; i < that.game.length; i++) {
 
-    
+    var liberty = 0;
+    var elem = that.game[i];
+
+    // North
+    if (elem.y - 1 != 0) {
+
+      var north = _.findWhere(that.game, {x: elem.x, y: elem.y -1});
+
+      elem.north = north;
+      liberty++;
+    }
+
+    // West
+    if (elem.x - 1 != 0) {
+
+      var west = _.findWhere(that.game, {x: elem.x - 1, y: elem.y});
+
+      elem.west = west;
+      liberty++;
+    }
+
+    // South
+    if (elem.y + 1 < size.x) {
+
+      var south = _.findWhere(that.game, {x: elem.x, y: elem.y + 1});
+
+      elem.south = south;
+      liberty++;
+    }
+
+    // East
+    if (elem.x + 1 < size.x) {
+
+      var east = _.findWhere(that.game, {x: elem.x + 1, y: elem.y});
+
+      elem.east = east;
+      liberty++;
+    }
+
+    elem.liberty = liberty;
   }
 };
 

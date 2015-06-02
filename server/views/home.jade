@@ -1,0 +1,51 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Games of Go
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    
+    #leftside
+      img.logo(src='/img/logo.png', alt='')
+      ul.menu
+        li Histoire du Go
+        li Règles du Go
+        li Les champions
+        li Autres
+        li About
+      ul.game
+        li Abandonner
+        li Nouvelle partie
+      #timePlayer1
+      #timePlayer2
+      #scorePlayer1
+      #scorePlayer2
+      button.togglePause
+        | Pause du jeu
+    
+    #rightside
+      #game.game_area
+      .player1
+        .datas
+          .name
+          .point
+          .color
+          .time
+        .play
+          img(src='', alt='')
+      
+      .player2
+        .datas
+          .name
+          .point
+          .color
+          .time
+        .play
+          img(src='', alt='')
+    script.
+      var require = {
+      urlArgs : "bust="+new Date().getTime()
+      };
+    script(src='core/vendors/watch.js')
+    script(data-main='core/app', src='core/vendors/require.js')

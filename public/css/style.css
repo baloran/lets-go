@@ -1,3 +1,10 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo|typicons);
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif; font-weight: 50px;
+}
+
 html, body {
 	width: 100%;
 	height: 100%;
@@ -38,6 +45,112 @@ html {
 	height: 500px;
 	margin: auto;
 	background-color: #fff;
+}
+
+.menu li{
+	font-family:'Open Sans',sans-serif;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 11px;
+	line-height: 25px;
+	letter-spacing: 3px;
+	list-style-type: none; 
+}
+
+.menu li:hover{
+	color: #e40643;
+}
+.game{
+	font-family:'Open Sans',sans-serif;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 11px;
+	line-height: 55px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	text-align: center;
+	list-style-type: none; 
+	position: absolute;
+	bottom: 0px;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.game li:hover{
+	background-color: #F7F6F6; 
+}
+
+.game li{
+ 	width: 250px;
+ 	height: 50px;
+ 	border-top: 1px solid #eaeaea;
+}
+
+.game li, .menu li {
+	 	  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.player1{
+	width: 150px;
+	height: 160px;
+	background-color: #fff;
+	margin-top: -141px;
+}
+
+.player2{
+	width: 150px;
+	height: 160px;
+	background-color: #fff;
+}
+
+.datas{
+	font-family:'Open Sans',sans-serif;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 3px;
+	text-align: center;
+}
+
+.name{
+	padding-top: 15px;
+	font-size: 10px;
+}
+
+#scorePlayer1, #scorePlayer2{
+	font-size: 50px;
+}
+
+.color{
+	font-size: 11px;
+	font-weight: 200;
+	letter-spacing: 2px;
+}
+
+#timePlayer1, #timePlayer2{
+	font-size: 25px;
+	padding-top: 5px;
+	letter-spacing: 1px;
+	border-bottom: solid #000 1px; 
+}
+
+.play1, .play2{
+	text-align:center;
+}
+/*.play{
+	width: 150px;
+	height: 30px;
+	background-color: #fff;
+	border-top: solid 1px #f00;
+	text-align: center;
+}
+*/
+
+span.entypo-pause, span.entypo-play {
+  font-size: 24px;
 }
 
 .case{

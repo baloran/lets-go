@@ -5,7 +5,6 @@ html(lang='en')
     title Games of Go
     link(rel='stylesheet', href='/css/style.css')
   body
-    
     #leftside
       img.logo(src='/img/logo.png', alt='')
       ul.menu
@@ -15,37 +14,39 @@ html(lang='en')
         li Autres
         li About
       ul.game
-        li Abandonner
+        li Fin de partie
         li Nouvelle partie
-      #timePlayer1
-      #timePlayer2
-      #scorePlayer1
-      #scorePlayer2
-      button.togglePause
-        | Pause du jeu
-    
+        //- Faire une pop-up permettant de choisir la taille du plateau
+      
+        //- <button id="toggle" value="play">
+        //- Play
+        //- </button>
     #rightside
       #game.game_area
+      
       .player1
         .datas
-          .name
-          .point
-          .color
-          .time
-        .play
-          img(src='', alt='')
+          .name Joueur 1
+          #scorePlayer1 0
+          .color blancs
+          #timePlayer1 0
+        .play1
+          span.entypo-pause
+            img(src='', alt='')
       
       .player2
         .datas
-          .name
-          .point
-          .color
-          .time
-        .play
-          img(src='', alt='')
+          .name Joueur 2
+          #scorePlayer2 0
+          .color Noirs
+          #timePlayer2 0
+        .play2
+          span.entypo-play
+    
     script.
       var require = {
-      urlArgs : "bust="+new Date().getTime()
+        urlArgs : "bust="+new Date().getTime()
       };
     script(src='core/vendors/watch.js')
     script(data-main='core/app', src='core/vendors/require.js')
+    script(src='script.js')

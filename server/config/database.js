@@ -41,3 +41,4 @@ process.on('SIGINT', function () {
 /**
  * Expose
  */
+require('../model/User');

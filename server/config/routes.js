@@ -15,4 +15,6 @@ module.exports = function (app) {
 
   app.get('/login', user.loginView);
   app.post('/login', user.processLogin);
+  app.get('/register', user.register);
+  app.post('/register', user.processRegister);
 }

@@ -59,7 +59,11 @@ var Go = function () {
   ];
 
   this.game = [];
-  this.chaine = [];
+
+  this.chaine = function () {
+    this.id = null;
+    this.firstStone = null;
+  };
 
   this.stone = function () {
     this.x =  0;
@@ -73,7 +77,7 @@ var Go = function () {
     this.liberty =  0;
     this.elem = null;
     this.user = null;
-    this.timePose = 0;
+    this.timePose = null;
   };
 
   this.currentPlayer = 0;

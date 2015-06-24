@@ -50,10 +50,32 @@ userSchema.pre('save', function (next) {
 
 // Compare password
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
+    
+
+
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
+};
+
+userSchema.statics.login = function (body, cb) {
+
+  this.find({email: body.email}, function (err, user) {
+
+    if (err) return cb(err, null);
+
+    if (user.length < 1) return cb('no data', null);
+
+    console.log(user);
+
+    bcrypt.compare(body.password, user[0].password, function(err, isMatch) {
+        
+        if (err) return cb(err);
+        cb(null, isMatch);
+
+    });
+  });
 };
 
 

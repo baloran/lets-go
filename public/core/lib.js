@@ -15,6 +15,19 @@ Go.prototype.addClass = function (el, className) {
     el.className += ' ' + className;
 };
 
+/**
+ * Generate an id
+ * @return {[type]} [description]
+ */
+Go.prototype.guid = function () {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000 * (Math.floor(Date.now() / 1000)))
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4();
+}
+
 
 /*
  * object.watch polyfill

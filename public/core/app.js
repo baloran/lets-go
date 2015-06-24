@@ -7,10 +7,11 @@ requirejs.config({
   paths: {
     'go'                      : "go",
     'lib'                     : "lib",
+    'circular-json'           : "vendors/circular-json",
     'player'                  : "go-player",
     'verification'            : "go-verification",
     'ui'                      : "go-ui",
-    'jquery'                  : "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min",
+    'jquery'                  : "vendors/jquery",
     'underscore'              : "vendors/underscore",
     'underscore_observable'   : "vendors/underscore.observable"
   },
@@ -22,7 +23,19 @@ requirejs.config({
     },
     underscore_observable: {
       deps: ['underscore']
-    }
+    },
+    lib: {
+      deps: ['go','circular-json']
+    },
+    player: {
+      deps: ['go','circular-json']
+    },
+    ui: {
+      deps: ['go','circular-json']
+    },
+    verification: {
+      deps: ['go','circular-json']
+    },
   }
 });
 

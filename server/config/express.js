@@ -11,6 +11,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var moment = require('moment');
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 
 module.exports = function (app) {
 
@@ -19,8 +20,11 @@ module.exports = function (app) {
 
     app.use(logger('dev'));
 
+    app.use(expressValidator());
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
+        limit: '50mb',
         extended: false
     }));
 
@@ -30,8 +34,14 @@ module.exports = function (app) {
 
     // Session
     app.use(session({
-        secret: 'thegreatescape'
+        secret: 'toutesdesputes'
     }));
+
+    app.use(function (req, res, next) {
+
+        req.session.users = [];
+        next();
+    });
 
     app.use(cookieParser());
 

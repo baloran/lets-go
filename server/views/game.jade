@@ -4,7 +4,9 @@ html(lang='en')
     meta(charset='UTF-8')
     title Games of Go
     link(rel='stylesheet', href='/css/style.css')
-  body
+    link(rel='stylesheet', href='/css/app.css')
+      
+  body(data-game="true", data-id=data.id, data-type=data.type)
     #leftside
       img.logo(src='/img/logo.png', alt='')
       ul.menu
@@ -21,6 +23,8 @@ html(lang='en')
         //- <button id="toggle" value="play">
         //- Play
         //- </button>
+      #player
+      button.update-player Update
     #rightside
       #game.game_area
       
@@ -47,6 +51,5 @@ html(lang='en')
       var require = {
         urlArgs : "bust="+new Date().getTime()
       };
-    script(src='core/vendors/watch.js')
-    script(data-main='core/app', src='core/vendors/require.js')
-    script(src='script.js')
+    script(src='/core/vendors/watch.js')
+    script(data-main='/core/app', src='/core/vendors/require.js')

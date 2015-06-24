@@ -2,14 +2,12 @@ var mongoose = require('mongoose');
 
 var User = mongoose.model('User');
 
+module.exports.gameChoice = function (req, res) {
+
+  res.render('choice');
+};
+
 module.exports.loginView = function (req, res) {
-
-  User.find({}, function (err, data) {
-
-    if (err) return console.log(err);
-
-    console.log(data);
-  });
 
   res.render('login');
 
@@ -17,7 +15,18 @@ module.exports.loginView = function (req, res) {
 
 module.exports.processLogin = function (req, res) {
 
-  console.log(req.body);
+  User.login(req.body, function (err, match) {
+    
+    if (err) return console.log(err);
+
+    if (match) {
+
+      req.session.email = req.body.email;
+      req.session.connected = true;
+
+      req.session.save();
+    };
+  });
 
 };
 
@@ -28,11 +37,7 @@ module.exports.register = function (req, res) {
 
 module.exports.processRegister = function (req, res) {
 
-  console.log(req.body);
 
-  if (req.body.password === req.body.re_password) {
-
-  };
 
   var user = new User(req.body);
 
@@ -43,18 +48,15 @@ module.exports.processRegister = function (req, res) {
 
 module.exports.homeView = function (req, res) {
 
-  io.on('connection', function (socket) {
-
-    io.emit('news', {title: 'test'});
-
-    socket.on('private message', function (from, msg) {
-      console.log('I received a private message by ', from, ' saying ', msg);
-    });
-
-    socket.on('disconnect', function () {
-      io.emit('user disconnected');
-    });
-  });
-
   res.render('home');
+};
+
+module.exports.search = function (req, res) {
+
+  var name = req.body.name;
+
+  User.findOne({email: new RegExp('^'+name+'$', "i")}, function(err, data) {
+    
+    res.json(data);
+  });
 };

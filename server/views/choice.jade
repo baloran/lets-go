@@ -1,0 +1,36 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Games of Go
+    link(rel='stylesheet', href='/css/app.css')
+  body
+    header
+      img(src="img/logo.png", alt="", class="logo")
+    
+    .container
+      .cards
+        .card
+          h2 vs
+            span IA
+          p Play against an IA
+          a(href="/generate/ia", class="button") Play
+        .card.active
+          h2 vs
+            span player 2
+          p Play against an friend
+          a(href="/generate/local", class="button") Play
+        .card
+          h2 vs
+            span multi
+          p Play against guys in internet
+          a(href="/generate/multi", class="button") Play
+
+
+    script.
+      var require = {
+        urlArgs : "bust="+new Date().getTime()
+      };
+    script(src='core/vendors/watch.js')
+    script(data-main='core/app', src='core/vendors/require.js')
+    script(src='script.js')

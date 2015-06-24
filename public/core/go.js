@@ -12,15 +12,15 @@
 /**
  * [Go description]
  */
-var Go = function () {
+var Go = function (io) {
 
   this.gameElement = document.querySelector("#game");
-
+  
   this.gameOptions = {
     finish: false,
     pause: false,
     size: '19'
-  }
+  };
 
   this.sizeGame = [
     {
@@ -48,24 +48,34 @@ var Go = function () {
       id: 0,
       name: 'John',
       score: 0,
-      time: 0
+      time: 0,
+      type: 'host'
     },
     {
       id: 1,
       name: 'Jean',
       score: 0,
-      time: 0
+      time: 0,
+      type: 'player'
     }
   ];
 
   this.game = [];
+  this.chaines = [];
+  this.stones = [];
 
   this.chaine = function () {
+    
     this.id = null;
     this.firstStone = null;
+    this.lastStone = null;
+    this.liberty = null;
+    this.jail = false;
+    this.time = null;
   };
 
   this.stone = function () {
+    
     this.x =  0;
     this.y =  0;
     this.next = null;
@@ -78,9 +88,69 @@ var Go = function () {
     this.elem = null;
     this.user = null;
     this.timePose = null;
+    this.chaine = null;
+    this.time = null;
   };
 
   this.currentPlayer = 0;
+};
+
+/**
+ * Load game by id
+ * @param  {[type]} gameID [description]
+ * @return 1        loaded extern
+ * @return 2        neeed to be generate
+ */
+Go.prototype.loadGame = function (cb) {
+
+  var that = this;
+
+  $.ajax({
+      url: '/getParty/' + $('body').data('id'),
+      type: 'GET',
+      success: function (data) {
+
+        that.gameOptions.size = data.size;
+
+        var player1 = _.where(that.players, {type:'host'});
+        var player2 = _.where(that.players, {type:'player'});
+
+        player1[0].name = data.host;
+        player2[0].name = data.player;
+
+        if (data.stones.length > 0) {
+
+          that.stones = data.stones;
+          cb(false, 1);
+        } else {
+          cb(false, 2);
+        }
+      }
+    });
+};
+
+Go.prototype.gameUpdate = function (elem) {
+
+  var that = this;
+
+  var obj = {
+    x:elem.x,
+    y:elem.y,
+    email: that.getCurrentPlayerEmail(),
+    nextPlayer: that.getSecondPlayer().name,
+    id: that.stones.length + 1
+  }
+
+  that.stones.push(obj);
+
+  $.ajax({
+      url: '/updateParty/' + $('body').data('id'),
+      type: 'post',
+      data: obj,
+      success: function (data) {
+        console.log(data);
+      }
+    });
 };
 
 /**
@@ -96,15 +166,40 @@ Go.prototype.init = function () {
     if (that.gameOptions.finish) {
       that.elemCases = document.querySelectorAll('.case');
       that.generateLinkObject();
+
+      if (that.stones.length > 0) {
+        var stones = _.indexBy(that.stones, 'id');
+
+        _.each(stones, function (stone) {
+
+            console.log($('.case[data-x="'+stone.x+'"][data-y="'+stone.y+'"]'))
+
+          that.placement(document.querySelector('.case[data-x="'+stone.x+'"][data-y="'+stone.y+'"]'))
+        });
+      };
     }
 
     that.events();
 
   });
 
-  this.generateGameBoard();
-  this.initUI();
+  if ($('body').data('game')) {
 
+    that.loadGame(function (err, load) {
+
+      if (err) return console.log(err);
+
+      if (load == 2) {
+
+        that.generateGameBoard();
+      } else if (load == 1) {
+        that.generateGameBoard();
+
+      }
+    });
+  };
+  
+  that.initUI();
 };
 
 Go.prototype.getCurrentSize = function () {
@@ -113,8 +208,6 @@ Go.prototype.getCurrentSize = function () {
 
   var size = _.findWhere(that.sizeGame, {slug: that.gameOptions.size});
 
-  console.log(size);
-
   return size;
 }
 
@@ -122,12 +215,14 @@ Go.prototype.getCurrentSize = function () {
  * generateGameBoard
  * Permet de genererer le tableau de jeu
  */
-Go.prototype.generateGameBoard = function () {
+Go.prototype.generateGameBoard = function (cb) {
 
   var that = this;
   var j = 1;
   var l = 1;
   var size = that.getCurrentSize();
+
+  $(that.gameElement).addClass('size'+that.gameOptions.size); 
 
   for (var i = 1; i < (size.x + 1); i++) {
 
@@ -148,6 +243,7 @@ Go.prototype.generateGameBoard = function () {
 
     if (l == size.x) {
       that.gameOptions.finish = true;
+      cb(true);
       break;
     }
 
@@ -161,6 +257,7 @@ Go.prototype.generateGameBoard = function () {
     }
 
   }
+
 };
 
 /**
@@ -230,7 +327,7 @@ Go.prototype.events = function () {
 
     var elem = that.elemCases[i];
 
-    elem.addEventListener('click', function (){
+    $(elem).on('click', function (){
 
       that.placement(this);
 

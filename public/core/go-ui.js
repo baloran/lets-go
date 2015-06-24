@@ -7,9 +7,17 @@
  */
 Go.prototype.initUI = function () {
 
+  var that = this;
+
   this.displayTimer();
   this.displayScore();
+  this.searchPlayerGenerate();
   this.pause();
+
+  $('.update-player').click(function () {
+
+    that.socket.emit('display');
+  });
 };
 
 /**
@@ -78,5 +86,31 @@ Go.prototype.pause = function () {
 
       $('#game').fadeIn();
     }
+  });
+};
+
+/**
+ * [searchPlayerGenerate description]
+ * @return {[type]} [description]
+ */
+Go.prototype.searchPlayerGenerate = function () {
+
+  $('.searchPlayer').on('keyup', function () {
+
+    $.ajax({
+        url: '/api/search',
+        type: 'POST',
+        data: {
+          name: $(this).val()
+        },
+        success: function (data) {
+          
+          if (data) {
+            $('.resultPlayer').html('<label><input type="radio" name="player2" value="'+ data.email +'">'+ data.email +'</label>');
+          } else {
+            $('.resultPlayer').html('<p>No result</p>');
+          }
+        }
+      });
   });
 };

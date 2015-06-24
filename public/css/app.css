@@ -1,0 +1,181 @@
+/* line 5, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/*
+	Color
+ */
+/*
+	Style
+ */
+/* line 14, ../scss/app.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 20, ../scss/app.scss */
+html {
+  box-sizing: border-box;
+}
+
+/* line 23, ../scss/app.scss */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* line 27, ../scss/app.scss */
+body {
+  background-color: #FFF;
+  font-family: 'Open sans';
+}
+
+/* line 32, ../scss/app.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 36, ../scss/app.scss */
+header {
+  text-align: center;
+  background-color: #F2F2F2;
+  padding-top: 55px;
+  height: 450px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+/* line 43, ../scss/app.scss */
+header .logo {
+  width: 228px;
+}
+
+/* line 48, ../scss/app.scss */
+h2 {
+  text-transform: uppercase;
+  font-size: 22px;
+}
+/* line 51, ../scss/app.scss */
+h2 span {
+  font-weight: 700;
+  font-size: 26px;
+  padding-left: 20px;
+}
+
+/* line 58, ../scss/app.scss */
+.button {
+  background-color: #DA0034;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 18px;
+  padding: 15px 25px;
+}
+
+/* line 67, ../scss/app.scss */
+.container {
+  width: 100%;
+  margin-top: 25px;
+  background-color: #fff;
+  margin-top: 260px;
+}
+
+/* line 74, ../scss/app.scss */
+.cards {
+  width: 900px;
+  margin: 0 auto;
+}
+/* line 77, ../scss/app.scss */
+.cards .card {
+  background-color: #fff;
+  display: inline-block;
+  text-align: center;
+  width: calc(100%/3);
+  padding: 20px;
+  height: 300px;
+  position: relative;
+  z-index: 10;
+  margin-top: 50px;
+  float: left;
+}
+/* line 88, ../scss/app.scss */
+.cards .card p {
+  margin-bottom: 35px;
+}
+/* line 91, ../scss/app.scss */
+.cards .card.active {
+  -moz-box-shadow: #E6E6E6 1px 1px 10px;
+  -webkit-box-shadow: #E6E6E6 1px 1px 10px;
+  box-shadow: #E6E6E6 1px 1px 10px;
+  z-index: 100;
+  height: 300px;
+  margin-top: 0px;
+}
+
+/* line 101, ../scss/app.scss */
+.size9 .case {
+  width: calc(100%/9) !important;
+  height: calc(500px/9) !important;
+}

@@ -40,6 +40,23 @@ Go.prototype.getCurrentPlayer = function () {
 };
 
 /**
+ * [getCurrentPlayerEmail description]
+ * @return {[type]} [description]
+ */
+Go.prototype.getCurrentPlayerEmail = function () {
+
+  for (var i = 0; i < this.players.length; i++) {
+
+    var player = this.players[i];
+
+    if (this.players[i].id == this.currentPlayer) {
+      return this.players[i].name;
+    }
+  }
+
+};
+
+/**
  * [getSecondPlayer description]
  * @return {[type]} [description]
  */

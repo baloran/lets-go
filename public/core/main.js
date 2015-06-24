@@ -1,17 +1,18 @@
 define([
     'jquery',
     'underscore',
+    'circular-json',
     'underscore_observable',
     'go',
     'lib',
     'player',
     'verification',
     'ui'
-  ], function ($, _) {
+  ], function ($, _, io) {
 
   $(function(_) {
 
-    var app = new Go();
+    var app = new Go(io);
     app.init();
 
   });

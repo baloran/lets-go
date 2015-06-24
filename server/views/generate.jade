@@ -1,0 +1,35 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Games of Go
+    link(rel='stylesheet', href='/css/app.css')
+  body(data-game="false")
+    
+    h1 Generate
+    p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas ipsam minus odio saepe magnam soluta eius unde, suscipit voluptatibus. Dolor autem voluptate sit velit, ipsum ullam ratione asperiores, error quos.
+    
+    form(action="/generate/" + type, method="post")
+      
+      select(name="size")
+        option(value="9") 9X9
+        option(value="12") 12X12
+        option(value="19") 19X19
+
+      if type == "multi"
+        input(type="text", class="searchPlayer", placeholder="Search an Player")
+        .resultPlayer
+      
+      if type == "local"
+        input(type="text", name="player1", placeholder="Name of player 1")
+        input(type="text", name="player2", placeholder="Name of player 2")
+
+      input(type="submit", value="Let's Go")
+
+
+    script.
+      var require = {
+        urlArgs : "bust="+new Date().getTime()
+      };
+    script(src='core/vendors/watch.js')
+    script(data-main='/core/app', src='/core/vendors/require.js')

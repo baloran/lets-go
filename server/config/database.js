@@ -42,3 +42,4 @@ process.on('SIGINT', function () {
  * Expose
  */
 require('../model/User');
+require('../model/Game');

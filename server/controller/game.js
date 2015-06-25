@@ -66,11 +66,13 @@ module.exports.letsGo = function (req, res) {
           data: data
         });
       };
+    } else {
+
+      res.render('game', {
+        data: data
+      });
     }
 
-    res.render('game', {
-      data: data
-    });
   });
 };
 
@@ -102,6 +104,33 @@ module.exports.updateParty = function (req, res) {
       if (err) return console.log(err);
 
       return true;
+    });
+  });
+};
+
+module.exports.watch = function (req, res) {
+
+  Game.findOne({id: req.params.id}, function (err, data) {
+
+    if (err) return console.log(err);
+
+    if (data.type == "multi") {
+
+      if (!req.session.connected && (req.session.email != data.player || req.session.email != data.host)) {
+
+        res.redirect('/login');
+      } else {
+
+        res.render('watch', {
+          data: data,
+          pages: 'watch'
+        });
+      };
+    }
+
+    res.render('watch', {
+      data: data,
+      pages: 'watch'
     });
   });
 };

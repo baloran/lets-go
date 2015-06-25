@@ -25,6 +25,7 @@ module.exports = function (app) {
   app.get('/generate/:type', game.generateView);
   app.post('/generate/:type', game.generate);
   app.get('/game/:id', game.letsGo);
+  app.get('/watch/:id', game.watch);
   app.get('/getParty/:id', game.getParty);
   app.post('/updateParty/:id', game.updateParty);
 }

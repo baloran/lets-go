@@ -1,5 +1,47 @@
-form(action="/login", method="post")
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Games of Go
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/app.css')
   
-  input(type="text", name="email")
-  input(type="password", name="password")
-  input(type="submit")
+  body(data-game="false", class="white")
+
+    .bg
+      .upside
+      .downside
+    .logo
+      img(src='/img/logo.png', alt='')
+    .menu
+      img(src='/img/logo_mini.png', alt='')
+      ul
+        li
+          a(href='./index.html') Play
+        li
+          a(href='./watch.html') Watch
+        li
+          a(href='./infos.html') Infos
+      .sociaux
+        img(src='/img/facebook.png', alt='')
+        img(src='/img/twitter.png', alt='')
+        img(src='/img/googlep.png', alt='')
+    
+    .mods
+      .select.settings
+
+        h2 Login 
+        form(action="/login", method="post")
+
+          input(type="text", name="email", class="pseudo", placeholder="E-mail")
+          input(type="password", name="password", class="pseudo", placeholder="password")
+          br
+          input(type="submit",class="button")
+
+
+    script.
+      var require = {
+        urlArgs : "bust="+new Date().getTime()
+      };
+    script(src='core/vendors/watch.js')
+    script(data-main='/core/app', src='/core/vendors/require.js')

@@ -170,12 +170,31 @@ Go.prototype.init = function () {
       if (that.stones.length > 0) {
         var stones = _.indexBy(that.stones, 'id');
 
-        _.each(stones, function (stone) {
+        if ($('body').data('game') == 'watch') {
 
-          console.log($('.case[data-x="'+stone.x+'"][data-y="'+stone.y+'"]'))
+          var i = 1;
 
-          that.placement(document.querySelector('.case[data-x="'+stone.x+'"][data-y="'+stone.y+'"]'), true)
-        });
+          var poseInTime = setInterval(function () {
+            
+            console.log(i)
+            that.placement(document.querySelector('.case[data-x="'+stones[i].x+'"][data-y="'+stones[i].y+'"]'), true);
+            i++;
+            console.log(i);
+            console.log(Object.keys(stones).length);
+            if (i > Object.keys(stones).length) {
+              console.log("stop")
+              clearInterval(poseInTime);
+            };
+          }, 1000);
+
+
+
+        } else {
+          _.each(stones, function (stone) {
+
+              that.placement(document.querySelector('.case[data-x="'+stone.x+'"][data-y="'+stone.y+'"]'), true)
+          });
+        }
       };
     }
 
@@ -357,6 +376,6 @@ Go.prototype.surrender = function () {
   that.stopCountDown();
 
   var best = _.sortBy(that.players, 'score');
-  
-  $('.information-win').append('<p>Le gagnant est ' + best[1].name + ' avec le score ' + best[1].score + '</p>');
+
+  $('.information-win').html('<p>Le gagnant est ' + best[1].name + ' avec le score ' + best[1].score + '</p>');
 };

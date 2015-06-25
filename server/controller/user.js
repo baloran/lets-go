@@ -25,7 +25,13 @@ module.exports.processLogin = function (req, res) {
       req.session.connected = true;
 
       req.session.save();
-    };
+
+      res.redirect('/');
+      
+    } else {
+
+      res.redirect('/login');
+    }
   });
 
 };

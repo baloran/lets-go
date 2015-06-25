@@ -1,17 +1,11 @@
 Let's Go
 ----------
 
-### Story
-
-Ici l'histoire
-
 ### Techno
 
 * ```$``` - jQuery
 * ```_``` - Underscore
 * Require.js
-
-Projet séperer en plusieurs fichiers avec
 
 ### Team
 
@@ -19,3 +13,9 @@ Projet séperer en plusieurs fichiers avec
 - Morgane Le Saout
 - Nicolas Aguado
 - Arnaud Allouis  
+
+### Getting Started
+
+- npm install 
+- install mongoDB
+- node server/app.js

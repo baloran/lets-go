@@ -617,3 +617,11 @@ input:focus {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
+
+/* line 480, ../scss/app.scss */
+.information-win {
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+}

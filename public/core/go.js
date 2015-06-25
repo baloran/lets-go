@@ -71,7 +71,7 @@ var Go = function (io) {
     this.lastStone = null;
     this.liberty = null;
     this.jail = false;
-    this.time = null;
+    this.time = Date.now();
   };
 
   this.stone = function () {
@@ -89,7 +89,7 @@ var Go = function (io) {
     this.user = null;
     this.timePose = null;
     this.chaine = null;
-    this.time = null;
+    this.time = Date.now();
   };
 
   this.currentPlayer = 0;
@@ -172,9 +172,9 @@ Go.prototype.init = function () {
 
         _.each(stones, function (stone) {
 
-            console.log($('.case[data-x="'+stone.x+'"][data-y="'+stone.y+'"]'))
+          console.log($('.case[data-x="'+stone.x+'"][data-y="'+stone.y+'"]'))
 
-          that.placement(document.querySelector('.case[data-x="'+stone.x+'"][data-y="'+stone.y+'"]'))
+          that.placement(document.querySelector('.case[data-x="'+stone.x+'"][data-y="'+stone.y+'"]'), true)
         });
       };
     }
@@ -215,7 +215,7 @@ Go.prototype.getCurrentSize = function () {
  * generateGameBoard
  * Permet de genererer le tableau de jeu
  */
-Go.prototype.generateGameBoard = function (cb) {
+Go.prototype.generateGameBoard = function () {
 
   var that = this;
   var j = 1;
@@ -243,7 +243,6 @@ Go.prototype.generateGameBoard = function (cb) {
 
     if (l == size.x) {
       that.gameOptions.finish = true;
-      cb(true);
       break;
     }
 
@@ -342,4 +341,22 @@ Go.prototype.events = function () {
 
   });
 
+  $('.surender').click(function (){
+
+    that.surrender();
+  });
+
+};
+
+
+Go.prototype.surrender = function () {
+
+  var that = this;
+
+  $(that.gameElement).fadeOut();
+  that.stopCountDown();
+
+  var best = _.sortBy(that.players, 'score');
+  
+  $('.information-win').append('<p>Le gagnant est ' + best[1].name + ' avec le score ' + best[1].score + '</p>');
 };

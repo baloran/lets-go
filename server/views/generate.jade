@@ -3,28 +3,54 @@ html(lang='en')
   head
     meta(charset='UTF-8')
     title Games of Go
+    link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='/css/app.css')
-  body(data-game="false")
-    
-    h1 Generate
-    p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas ipsam minus odio saepe magnam soluta eius unde, suscipit voluptatibus. Dolor autem voluptate sit velit, ipsum ullam ratione asperiores, error quos.
-    
-    form(action="/generate/" + type, method="post")
-      
-      select(name="size")
-        option(value="9") 9X9
-        option(value="12") 12X12
-        option(value="19") 19X19
+  
+  body(data-game="false", class="white")
 
-      if type == "multi"
-        input(type="text", class="searchPlayer", placeholder="Search an Player")
-        .resultPlayer
-      
-      if type == "local"
-        input(type="text", name="player1", placeholder="Name of player 1")
-        input(type="text", name="player2", placeholder="Name of player 2")
+    .bg
+      .upside
+      .downside
+    .logo
+      img(src='/img/logo.png', alt='')
+    .menu
+      img(src='/img/logo_mini.png', alt='')
+      ul
+        li
+          a(href='./index.html') Play
+        li
+          a(href='./watch.html') Watch
+        li
+          a(href='./infos.html') Infos
+      .sociaux
+        img(src='/img/facebook.png', alt='')
+        img(src='/img/twitter.png', alt='')
+        img(src='/img/googlep.png', alt='')
+    
+    .mods
+      .select.settings
+        h2 SETTINGS
+        form(action="/generate/" + type, method="post")
 
-      input(type="submit", value="Let's Go")
+          if type == "multi"
+            input(type="text", class="searchPlayer", placeholder="Search an Player")
+            .resultPlayer
+          
+          if type == "local"
+            input(type="text",class="pseudo", name="player1", placeholder="Name of player 1")
+            br
+            br
+            input(type="text",class="pseudo", name="player2", placeholder="Name of player 2")
+            br
+            br
+          p Goban size
+            br
+            select(name="size")
+              option(value="9") 9X9
+              option(value="12") 12X12
+              option(value="19") 19X19
+          br
+          input(type="submit", class="button", value="Let's Go")
 
 
     script.

@@ -25,8 +25,11 @@ html {
 }
 
 body{
-	background-color: #FFF;
+	background-color: #191E23;
 	font-family: 'Open sans';
+	&.white{
+		background-color: #fff;
+	}
 }
 
 a{
@@ -71,6 +74,13 @@ h2{
 	margin-top: 260px;
 }
 
+#rightside {
+	width: auto;
+	height: 100%; width:100%;
+	background-color: #21282e;
+	display: table;
+}
+
 .cards{
 	width:900px;
 	margin:0 auto;
@@ -102,4 +112,367 @@ h2{
 		width: calc(100%/9) !important;
 		height: calc(500px/9) !important;
 	}
+}
+
+.case{
+  display:inline-block;
+  width: calc(100%/19);
+  background-color: #fff;
+  height:19px;
+  cursor:pointer;
+  background-image: url('/img/grid.png');
+  background-size: cover;
+  span {
+	width:100%; height:100%;
+	display: block;
+	background-size: cover;
+	&.black {
+		background-image: url('/img/blue.png');
+	}
+	&.white{
+		background-image: url('/img/red.png');
+	}
+  }
+}
+
+.sidebar {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 100%;
+}
+
+.sidebar .logo img {
+  margin-top: 40px;
+  width: 70px;
+  transform: rotate(-90deg);
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: #eaeaea;
+  position: absolute;
+}
+
+.s1 {
+    top: 110px;
+}
+
+.s2 {
+  top: 175px;
+}
+
+.s3 {
+  top: 235px;
+}
+
+.separator.s4 {
+  bottom: 110px;
+}
+
+.sociaux_b {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: -webkit-center;
+}
+
+.sociaux_b img {
+  width: 15px;
+  display: -webkit-box;
+  padding-bottom: 16px;
+}
+
+.surender img, .download img {
+  width: 15px;
+  margin-top: 26px;
+}
+
+.surender, .download {
+  width: 100%;
+  height: 62px;
+  position: absolute;
+  text-align: -webkit-center;
+}
+
+.surender {
+  top: 111px;
+}
+
+.download {
+  top: 125px;
+}
+
+#rightside{
+	width:900px; margin:0 auto;
+	background-color: transparent;
+}
+
+.game-container{
+	width:900px;
+	margin:0 auto;
+	position: relative;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.player1{
+	width: 150px;
+	height: 160px;
+	background-color: #fff;
+	position: absolute;
+	top:40%;
+	left:0;
+}
+
+.player2{
+	width: 150px;
+	height: 160px;
+	background-color: #fff;
+	position: absolute;
+	top:20%; right:0;
+}
+
+.bg {
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	position: absolute;
+}
+
+.upside, .downside {
+	width: 100%;
+}
+
+.upside {
+	background-color: #f5f5f5;
+	height: 56%;
+}
+
+.downside {
+	background-color: white;
+	height: 44%;
+}
+
+.logo {
+	position: absolute;
+	width: 100%;
+	z-index: 2;
+	text-align: -webkit-center;
+}
+
+.logo img {
+	margin-top: 50px; 
+  	width: 150px;
+}
+
+.menu {
+  z-index: 2;
+  position: absolute;
+  top: 20px;
+  left: 30px;
+}
+
+.menu img {
+  width: 45px;
+}
+
+.menu ul {
+  display: -webkit-inline-box;
+  margin: 0;
+  position: fixed;
+  top: 21px;
+  left: 60px;
+}
+
+.menu ul li {
+  display: inline;
+  color: #a1a1a1;
+  padding-right: 15px;
+  font-family:'Geomanist',sans-serif;
+  font-weight: lighter;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+li:hover {
+	color: #e11247;
+}
+
+.sociaux {
+  position: fixed;
+  top: 23px;
+  right: 30px;
+}
+
+.sociaux img {
+  width: 16px;
+  padding-right: 14px;
+}
+
+h2 {
+  color: #1e2330;
+  text-align: -webkit-center;
+  font-family: 'Geomanist',sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 38px;
+  padding-bottom: 15px;
+}
+
+h2 span {
+	font-weight: lighter;
+	font-size: 15px;
+}
+
+h3, .credits p {
+  color: #c8c8c8;
+  font-family: 'Geomanist',sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  text-align: -webkit-center;
+  line-height: 20px;
+  margin-bottom: 28px;
+}
+
+.mods {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  top: 30%;
+  left: 40%;
+}
+
+.select {
+  width: 250px;
+  height: 300px;
+  background-color: white;
+  text-align: -webkit-center;
+}
+
+.button {
+	width: 120px;
+	height: 35px;
+	color: white;
+	font-family: 'Geomanist',sans-serif;
+  	font-weight: bold;
+}
+
+.button:hover {
+	background-color: #e11247;
+}
+
+.button p {
+  padding-top: 11px;
+}
+
+.b1, .b3 {
+	background-color: #eaeaea;
+}
+
+.b2 {
+	background-color: #e11247;
+}
+
+.p2, .watch, .credits, .settings {
+-moz-box-shadow: 0px 0px 15px 0px #cfcfcf;
+-webkit-box-shadow: 0px 0px 15px 0px #cfcfcf;
+-o-box-shadow: 0px 0px 15px 0px #cfcfcf;
+box-shadow: 0px 0px 15px 0px #cfcfcf;
+  z-index: 3;
+}
+
+.ia, .multi, .upload, .download {
+	margin-top: 50px;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.watch h3 {
+  text-align: -webkit-left;
+  margin-left: 30px;
+}
+
+.watch li:hover {
+	color: #1e2330;
+}
+
+.watch ul li {
+  display: block;
+  color: #c8c8c8;
+  font-family: 'Geomanist',sans-serif;
+  font-weight: lighter;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: initial;
+  padding-bottom: 8px;
+}
+
+.watch ul {
+  display: block;
+  text-align: initial;
+  cursor: pointer;
+}
+
+.credits p span {
+	color: #1e2330;
+}
+
+.credits p {
+  padding-left: 25px;
+  padding-right: 25px;
+  text-align: -webkit-auto;
+}
+
+.settings {
+	width: 350px;
+  	height: 400px;
+}
+
+form .button {
+      background-color: #e11247;
+      padding: 0;
+      border: none;
+      margin-top: 10px;
+}
+
+form p {
+  color: #c8c8c8;
+  font-family: 'Geomanist',sans-serif;
+  font-weight: lighter;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+input:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+.pseudo {
+  text-align:center; 
+  border:none;
+  color: red;
+  color: #c8c8c8;
+  font-family: 'Geomanist',sans-serif;
+  font-weight: lighter;
+  font-size: 14px;
+  width: 250px;
+}
+
+.watch li, .button {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+      -ms-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+           -webkit-transition-timing-function: ease-in-out; 
+            transition-timing-function: ease-in-out;
 }

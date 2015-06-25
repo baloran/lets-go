@@ -1,0 +1,30 @@
+//- layout.jade
+doctype html
+html(lang='en')
+  head
+    block head
+      meta(charset='UTF-8')
+      title Games of Go
+      link(rel='stylesheet', href='/css/style.css')
+      link(rel='stylesheet', href='/css/app.css')
+  
+  block body
+    - var game = "false"
+    - var id = "false"
+    - var type = "false"
+
+    body(data-game=game, data-id=id, data-type=type)
+      header
+        img(src="img/logo.png", alt="", class="logo")
+      
+      
+      block content
+
+
+    script.
+      var require = {
+        urlArgs : "bust="+new Date().getTime()
+      };
+    script(src='core/vendors/watch.js')
+    script(data-main='core/app', src='core/vendors/require.js')
+    script(src='script.js')

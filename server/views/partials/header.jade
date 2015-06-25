@@ -1,0 +1,29 @@
+//- includes/head.jade
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Games of Go
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/app.css')
+      
+  body(data-game="true", data-id=data.id, data-type=data.type)
+	
+	.bg
+      .upside
+      .downside
+    .logo
+      img(src='css/img/logo.png', alt='')
+    .menu
+      img(src='css/img/logo_mini.png', alt='')
+      ul
+        li
+          a(href='./index.html') Play
+        li
+          a(href='./watch.html') Watch
+        li
+          a(href='./infos.html') Infos
+      .sociaux
+        img(src='css/img/facebook.png', alt='')
+        img(src='css/img/twitter.png', alt='')
+        img(src='css/img/googlep.png', alt='')

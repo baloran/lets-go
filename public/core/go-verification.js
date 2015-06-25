@@ -21,16 +21,16 @@ Go.prototype.getCurrentObject = function (x, y) {
  * [placement description]
  * @return {[type]} [description]
  */
-Go.prototype.placement = function (el) {
+Go.prototype.placement = function (el, regen) {
 
   var that = this;
+  regen = typeof regen !== 'undefined' ? regen : false;
 
-  console.log(el)
+  console.log(regen)
 
   if (!that.alreadyOccupy(el) && !that.jail(el)) {
 
     var $el = $(el);
-
 
     var gameElem = that.getCurrentObject($el.data('x'), $el.data('y'));
 
@@ -44,7 +44,9 @@ Go.prototype.placement = function (el) {
 
     that.stopCountDown();
 
-    that.gameUpdate(gameElem);
+    if (!regen) {
+      that.gameUpdate(gameElem);
+    };
 
     that.switchPlayer();
   }
@@ -59,6 +61,7 @@ Go.prototype.getLiberty = function (elem) {
 
   var that = this;
   var friend = 0;
+  var friendList = [];
 
   var currentUser = that.getCurrentPlayer();
   var secondUser = that.getSecondPlayer();
@@ -69,7 +72,7 @@ Go.prototype.getLiberty = function (elem) {
     elem.liberty--;
     elem.prev = elem.north;
     elem.north.next = elem;
-    that.addToChaine(elem, 'north');
+    friendList.push(elem.north.chaine);
     that.removeLiberty(elem.north);
     friend++;
   }
@@ -80,7 +83,7 @@ Go.prototype.getLiberty = function (elem) {
     elem.liberty--;
     elem.prev = elem.east;
     elem.east.next = elem;
-    that.addToChaine(elem, 'east');
+    friendList.push(elem.east.chaine);
     that.removeLiberty(elem.east);
     friend++;
   }
@@ -91,7 +94,7 @@ Go.prototype.getLiberty = function (elem) {
     elem.liberty--;
     elem.prev = elem.south;
     elem.south.next = elem;
-    that.addToChaine(elem, 'south');
+    friendList.push(elem.south.chaine);
     that.removeLiberty(elem.south);
     friend++;
   }
@@ -102,7 +105,7 @@ Go.prototype.getLiberty = function (elem) {
     elem.liberty--;
     elem.prev = elem.west;
     elem.west.next = elem;
-    that.addToChaine(elem, 'west');
+    friendList.push(elem.west.chaine);
     that.removeLiberty(elem.west);
     friend++;
   }
@@ -150,7 +153,34 @@ Go.prototype.getLiberty = function (elem) {
     chaine.liberty = elem.liberty;
     
     that.chaines.push(chaine);
+
+  } else if (friend == 1) {
+
+    that.addToChaine(elem, friendList[0]);
+
+  } else if (friend > 1) {
+
+    var chaines = _.filter(that.chaines, function (chaine) {
+      return _.contains(friendList, chaine.id);
+    });
+
+    var order = _.sortBy(chaines, 'time').reverse();
+
+    var elementToChange = _.where(that.game, {chaine: order[0].id});
+
+    _.each(elementToChange, function (stone) {
+
+      stone.chaine = order[1].id;
+    });
+
+    order[1].liberty = order[0].liberty + order[1].liberty;
+
+    that.chaines = _.without(that.chaines, _.findWhere(that.chaines, {id: order[0].id}));
+
+    that.addToChaine(elem, order[1].id);
   }
+
+  console.log(that.chaines);
 
   that.die(elem);
 };
@@ -199,12 +229,11 @@ Go.prototype.removeLiberty = function (elem) {
  * [addToChaine description]
  * @param {[type]} elem [description]
  */
-Go.prototype.addToChaine = function (elem, friend) {
+Go.prototype.addToChaine = function (elem, chaine) {
 
   var that = this;
-  var cardinal = elem[friend];
 
-  var c = _.where(that.chaines, {id: cardinal.chaine});
+  var c = _.where(that.chaines, {id: chaine});
 
   if (c[0].firstStone.next.length < 1) {
     c[0].firstStone.next.elem;

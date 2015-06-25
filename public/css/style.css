@@ -33,13 +33,6 @@ html {
 	margin: 40px;
 }
 
-#rightside {
-	width: auto;
-	height: 100%;
-	margin-left: 250px;
-	background-color: #21282e;
-}
-
 .game_area {
 	width: 500px;
 	height: 500px;
@@ -94,19 +87,6 @@ html {
           transition-duration: 0.8s;
 }
 
-.player1{
-	width: 150px;
-	height: 160px;
-	background-color: #fff;
-	margin-top: -141px;
-}
-
-.player2{
-	width: 150px;
-	height: 160px;
-	background-color: #fff;
-}
-
 .datas{
 	font-family:'Open Sans',sans-serif;
 	text-transform: uppercase;
@@ -151,28 +131,4 @@ html {
 
 span.entypo-pause, span.entypo-play {
   font-size: 24px;
-}
-
-.case{
-  display:inline-block;
-  width: calc(100%/19);
-  background-color: #fff;
-  height:19px;
-  border:1px solid #cd5656;
-  cursor:pointer;
-}
-
-.case span {
-  border-radius:50%;
-  background-color: red;
-  width:12px; height:12px;
-  display: inline-block;
-}
-
-.case span.black {
-  background-color: yellow;
-}
-
-.case span.white {
-  background-color: blue;
 }

@@ -7,45 +7,44 @@ html(lang='en')
     link(rel='stylesheet', href='/css/app.css')
       
   body(data-game="true", data-id=data.id, data-type=data.type)
-    #leftside
-      img.logo(src='/img/logo.png', alt='')
-      ul.menu
-        li Histoire du Go
-        li Règles du Go
-        li Les champions
-        li Autres
-        li About
-      ul.game
-        li Fin de partie
-        li Nouvelle partie
-        //- Faire une pop-up permettant de choisir la taille du plateau
-      
-        //- <button id="toggle" value="play">
-        //- Play
-        //- </button>
-      #player
-      button.update-player Update
-    #rightside
-      #game.game_area
-      
-      .player1
-        .datas
-          .name Joueur 1
-          #scorePlayer1 0
-          .color blancs
-          #timePlayer1 0
-        .play1
-          span.entypo-pause
-            img(src='', alt='')
-      
-      .player2
-        .datas
-          .name Joueur 2
-          #scorePlayer2 0
-          .color Noirs
-          #timePlayer2 0
-        .play2
-          span.entypo-play
+    .sidebar
+      .logo
+        img(src='/img/logo.png', alt='')
+      .separator.s1
+      .surender
+        img(src='/img/surrender.png', alt='')
+      .separator.s2
+      .download
+        img(src='/img/download.png', alt='')
+      .separator.s3
+      .separator.s4
+      .sociaux_b
+        img(src='/img/facebook.png', alt='')
+        img(src='/img/twitter.png', alt='')
+        img(src='/img/googlep.png', alt='')
+
+    #rightside.rightside
+      .game-container
+        #game.game_area
+        .information-win
+        .player1
+          .datas
+            .name Joueur 1
+            #scorePlayer1 0
+            .color blancs
+            #timePlayer1 0
+          .play1
+            span.entypo-pause
+              img(src='', alt='')
+        
+        .player2
+          .datas
+            .name Joueur 2
+            #scorePlayer2 0
+            .color Noirs
+            #timePlayer2 0
+          .play2
+            span.entypo-play
     
     script.
       var require = {
